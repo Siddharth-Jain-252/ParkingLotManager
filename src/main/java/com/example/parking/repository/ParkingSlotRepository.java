@@ -9,4 +9,6 @@ import com.example.parking.entity.ParkingSlot;
 public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> {
     
     List<ParkingSlot> findByParkingLotIdAndIsOccupiedFalse(Long parkingLotId);
+
+    List<ParkingSlot> findByParkingLotIdAndSlotNumber(Long parkingLotId, String slotNumber);
 }

@@ -100,6 +100,10 @@ public class ParkingService {
 
         Vehicle vehicle = vehicleRepository.findByLicensePlate(ticketRequestDTO.vehicleDTO().licensePlate()).get(0);
         ParkingLot parkingLot = parkingLotRepository.findByName(ticketRequestDTO.parkingLotName()).get(0);
+        ParkingSlot parkingSlot = parkingSlotRepository.findByParkingLotIdAndSlotNumber(parkingLot.getId(), ticketRequestDTO.slotNumber()).get(0);
+
+        parkingSlot.setIsOccupied(true);
+        parkingSlotRepository.save(parkingSlot);
 
         String ticketNumber = "TICKET-" + parkingLot.getName().charAt(4) + ticketRequestDTO.slotNumber().charAt(0) + System.currentTimeMillis();
 
@@ -120,6 +124,8 @@ public class ParkingService {
         Double totalAmount = getTotalAmount(ticket);
 
         ticket.setAmount(BigDecimal.valueOf(totalAmount));
+
+        ticketRepository.save(ticket); 
 
         return new TicketResponseDTO(
                 ticket.getTicketNumber(),
@@ -142,6 +148,17 @@ public class ParkingService {
         }
 
         return toDTO(ticket);
+    }
+
+    public void deleteSlot(String parkingLotName, String slotNumber) {
+
+        ParkingLot parkingLot = parkingLotRepository.findByName(parkingLotName).get(0);
+        ParkingSlot parkingSlot = parkingSlotRepository.findByParkingLotIdAndSlotNumber(parkingLot.getId(), slotNumber).get(0);
+
+        if (parkingSlot != null) {
+            parkingSlot.setIsOccupied(false);
+            parkingSlotRepository.save(parkingSlot);
+        }
     }
 
 }

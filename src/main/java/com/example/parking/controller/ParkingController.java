@@ -63,4 +63,10 @@ public class ParkingController {
         return parkingService.getTicket(ticketRequestDTO);
     }
 
+    @PostMapping("/deleteSlot")
+    public void deleteSlot(@RequestParam String parkingLotName, @RequestParam String slotNumber) {
+
+        parkingService.deleteSlot(parkingLotName, slotNumber);
+    }
+
 }
