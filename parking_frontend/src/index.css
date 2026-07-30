@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Oswald", ui-sans-serif, sans-serif;
+  --font-body: "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-asphalt-950: #141516;
+  --color-asphalt-900: #1c1e1f;
+  --color-asphalt-800: #26282a;
+  --color-asphalt-700: #313336;
+  --color-asphalt-600: #3d3f42;
+  --color-asphalt-500: #55585c;
+
+  --color-chalk: #f5f4ef;
+  --color-chalk-dim: #a3a6a8;
+
+  --color-paint: #f2c94c;
+  --color-paint-dim: #8a7332;
+
+  --color-led-green: #3ecf6e;
+  --color-led-green-dim: #1e5c37;
+  --color-led-red: #ef5b52;
+  --color-led-red-dim: #6b2622;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-asphalt-900);
+  color: var(--color-chalk);
+  font-family: var(--font-body);
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(242, 201, 76, 0.05), transparent 45%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 3px);
+}
+
+/* LED signage glow used for the live counter + status dots */
+.led-glow-green {
+  text-shadow: 0 0 6px rgba(62, 207, 110, 0.65), 0 0 18px rgba(62, 207, 110, 0.35);
+}
+.led-glow-red {
+  text-shadow: 0 0 6px rgba(239, 91, 82, 0.65), 0 0 18px rgba(239, 91, 82, 0.35);
+}
+
+/* Perforated edge for the ticket stub, like a torn receipt */
+.ticket-perforation {
+  background-image: radial-gradient(circle, var(--color-asphalt-900) 3px, transparent 3.5px);
+  background-size: 14px 14px;
+  background-position: -3px center;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.4; }
+  94% { opacity: 1; }
+}
+.animate-flicker {
+  animation: flicker 5s ease-in-out infinite;
+}
+
+.input {
+  border-radius: 0.125rem;
+  border: 1px solid var(--color-asphalt-600);
+  background-color: var(--color-asphalt-800);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-chalk);
+  outline: none;
+}
+.input:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-paint);
+}
