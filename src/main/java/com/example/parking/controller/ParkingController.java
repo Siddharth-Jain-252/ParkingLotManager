@@ -2,6 +2,7 @@ package com.example.parking.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,13 +58,13 @@ public class ParkingController {
         return parkingService.saveVehicleDetails(vehicleRequestDTO);
     }
 
-    @GetMapping("/ticket")
+    @PostMapping("/ticket")
     public TicketResponseDTO getTicket(@RequestBody TicketRequestDTO ticketRequestDTO) {
 
         return parkingService.getTicket(ticketRequestDTO);
     }
 
-    @PostMapping("/deleteSlot")
+    @DeleteMapping("/deleteSlot")
     public void deleteSlot(@RequestParam String parkingLotName, @RequestParam String slotNumber) {
 
         parkingService.deleteSlot(parkingLotName, slotNumber);

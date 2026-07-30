@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,6 +37,7 @@ public class ParkingLot {
     @OneToMany(mappedBy = "parkingLot",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
+    @JsonIgnore
     private List<ParkingSlot> parkingSlots = new ArrayList<>();
 
     @Column(name = "amount", nullable = false)

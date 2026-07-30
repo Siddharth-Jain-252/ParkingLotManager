@@ -111,6 +111,7 @@ public class ParkingService {
         ticket.setTicketNumber(ticketNumber);
         ticket.setVehicle(vehicle);
         ticket.setParkingLot(parkingLot);
+        ticket.setSlotNumber(ticketRequestDTO.slotNumber());
 
         return ticketRepository.save(ticket);
     }
